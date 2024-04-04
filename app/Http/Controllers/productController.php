@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Services\ProductService;
+use App\Services\CreateService;
+use App\Services\UpdateService;
+use App\Services\DeleteService;
 use App\Http\Requests\StoreProductRequest;
 use OpenApi\Annotations as OA;
 
@@ -12,10 +15,22 @@ class ProductController extends Controller
 {
     protected $productService;
 
-    public function __construct(ProductService $productService)
+    protected $createService;
+
+    protected $updateService;
+
+    protected $deleteService;
+
+    public function __construct(ProductService $productService, CreateService $createService, UpdateService $updateService, DeleteService $deleteService)
     {
         $this->productService = $productService;
+        $this->createService = $createService;
+        $this->updateService = $updateService;
+        $this->deleteService = $deleteService;
     }
+
+ 
+
 
     /**
      * @OA\Get(
@@ -119,7 +134,7 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
-        return $this->productService->createProduct($request);
+        return $this->createService->createProduct($request); //using service pattern
     }
 
 
@@ -168,7 +183,7 @@ class ProductController extends Controller
 
     public function update(StoreProductRequest $request, $id)
     {
-        return response()->json($this->productService->updateProduct($request, $id));
+        return response()->json($this->updateService->updateProduct($request, $id));  //using service pattern 
     }
 
     /**
@@ -197,6 +212,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        return response()->json($this->productService->deleteProduct($id));
+        return response()->json($this->deleteService->deleteProduct($id)); // using service pattern
     }
 }

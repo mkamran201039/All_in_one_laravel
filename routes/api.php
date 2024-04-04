@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\productController;
+use App\Http\Controllers\BalanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-
+Route::post('/transfer-balance', [BalanceController::class, 'transfer']);
 
 Route::apiResource('products', ProductController::class);
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\testController;
+use App\Http\Controllers\BalanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,6 @@ Route::get('/delete', function () {
 });
 
 
-
+Route::post('/transfer-balance', [BalanceController::class, 'transfer'])->name('balance.transfer');
 
 Route::post('send/mail/data',[testController::class, 'send_mail_data'])->name('send.mail.data');

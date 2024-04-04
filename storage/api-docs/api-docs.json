@@ -5,6 +5,80 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/transfer-balance": {
+            "post": {
+                "tags": [
+                    "Balance"
+                ],
+                "summary": "Transfer balance from one user to another",
+                "operationId": "transferBalance",
+                "requestBody": {
+                    "description": "Data for transferring balance",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "sender_username",
+                                    "receiver_username",
+                                    "amount"
+                                ],
+                                "properties": {
+                                    "sender_username": {
+                                        "type": "string",
+                                        "example": "sender_username"
+                                    },
+                                    "receiver_username": {
+                                        "type": "string",
+                                        "example": "receiver_username"
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 100
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Balance transferred successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Balance transfer failed: Insufficient balance"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/products": {
             "get": {
                 "tags": [
