@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\testController;
 use App\Http\Controllers\BalanceController;
+use App\Http\Controllers\ProfilePictureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,11 @@ Route::get('/delete', function () {
 Route::post('/transfer-balance', [BalanceController::class, 'transfer'])->name('balance.transfer');
 
 Route::post('send/mail/data',[testController::class, 'send_mail_data'])->name('send.mail.data');
+
+
+Route::get('/upload',[ProfilePictureController::class, 'showUploadForm']);
+
+Route::post('/upload',[ProfilePictureController::class, 'upload']);
+
+
+
